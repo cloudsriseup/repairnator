@@ -1,4 +1,4 @@
-$.get('https://repairnator.lille.inria.fr/repairnator-mongo-api/inspectors/', function (datas) {
+$.get(getApiUri('/inspectors/'), function (datas) {
   var htmlElement = $('#tablerealtime');
 
   var fieldNames = [
