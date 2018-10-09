@@ -47,8 +47,8 @@ router.route('/reproducedByProject')
   .get(inspectorCtrl.getNbReproducedByProject);
 
 
-router.route('/status/:status')
-  .get(inspectorCtrl.getByStatus);
+router.route('/search')
+  .get(inspectorCtrl.search);
 
 /** This should remain at the end of the file */
 router.route('/:inspectorId')
