@@ -43,6 +43,16 @@
       <div id="charts"></div>
     </section>
 
+    <div id="app-inspectors">
+      <table class="table-responsive">
+          <inspector-line
+            v-for="item in inspectors"
+            v-bind:inspector="item"
+            v-bind:key="item.id">
+          </inspector-line>
+      </table>
+
+    </div>
     <section id="realtimedata">
       <div class="table-responsive">
         <table class="table table-striped">
@@ -68,6 +78,7 @@
     <script src="/bower_components/d3/d3.js"></script>
     <script src="/bower_components/highcharts/highcharts.js"></script>
     <script src="/bower_components/moment/moment.js"></script>
+    <script src="/bower_components/vue/dist/vue.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -88,6 +99,7 @@
 
     <!-- build:js scripts/main.js -->
     <script src="scripts/api.js"></script>
+    <script src="scripts/notification.js"></script>
     <script src="scripts/all-builds-bar.js"></script>
     <script src="scripts/scanner_timechart.js"></script>
     <script src="scripts/realtime_values.js"></script>
