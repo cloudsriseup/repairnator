@@ -20,7 +20,7 @@ let lastBuild;
 const updateInspectors = function(){
   apiGet('/inspectors/', function (datas) {
     var htmlElement = $('#tablerealtime');
-    htmlElement.html("")
+    htmlElement.html('')
 
     var fieldNames = [
       {id:'buildFinishedDate', readable: 'Original date'},
