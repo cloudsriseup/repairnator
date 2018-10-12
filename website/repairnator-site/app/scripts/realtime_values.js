@@ -15,6 +15,45 @@ var appInspectors = new Vue({
   }
 })*/
 
+const inspectorDetails = new Vue({
+  el: '#inspector-details',
+  data: {
+    inspector: null,
+    inspectoKeys: null,
+    pipelineError: null,
+    pipelineErrorKeys: null,
+    buildId: 440200939,
+  },
+  watch: {
+    buildId: function (val) {
+      this.updateValues()
+    }
+  },
+  methods: {
+    updateValues: function(){
+      apiGet(`/inspectors/${this.buildId}`, (response) => {
+        this.inspector = response;
+        this.inspectorKeys = Object.keys(response);
+      })
+      apiGet(`/pipeline-errors/${this.buildId}`, (response) => {
+        if ( response.TestProject ){
+          // response.TestProject = response.TestProject.reduce((acc, curr) => acc + '\n' + curr, '')
+        }
+        this.pipelineError = response;
+        this.pipelineErrorKeys = Object.keys(response);
+      })
+    }
+  },
+  mounted () {
+    this.updateValues()
+  }
+})
+
+function openInspectorInfoModal(buildId){
+  inspectorDetails.buildId = buildId;
+  $('#inspectorModal').modal('show');
+}
+
 let lastBuild;
 
 const updateInspectors = function(){
@@ -66,6 +105,10 @@ const updateInspectors = function(){
         var td = $('<td></td>');
 
         var dataValue = data[fieldName];
+
+        if (fieldName == 'buildId') {
+          dataValue = `<a onClick='openInspectorInfoModal(${dataValue})'>${dataValue}</a>`
+        }
 
         if (fieldName == 'buildFinishedDate') {
           dataValue = moment(dataValue).subtract(2, 'hours').fromNow();

@@ -61,6 +61,32 @@
       </div>
     </section>
 
+    <!-- Modal -->
+    <div class="modal fade" id="inspectorModal" tabindex="-1" role="dialog" aria-labelledby="inspectorModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="inspectorModalLabel">Build details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="inspector-details">
+              <h1>{{ buildId }}</h1>
+              <p v-for="key in inspectorKeys"> <strong>{{ key }} : </strong> <span class="pre-json"> {{ inspector[key] }} </span> </p>
+              <h2>Pipeline-errors</h2>
+              <p v-for="key in pipelineErrorKeys"> <strong>{{ key }} : </strong> <span class="pre-json"> {{ pipelineError[key] }} </span> </p>
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- $Page footer-->
     <footer class="page-footer">
       <div class="page-footer__inner">
